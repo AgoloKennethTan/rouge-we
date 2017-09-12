@@ -46,7 +46,7 @@ class Word2VecGateway(object):
                 # Call to get similarity value
                 Rule('/word2vecdiff', endpoint='word2vec_diff')
             ])
-        self.word2vec_model = models.Word2Vec.load_word2vec_format(config['word2vec_model'], binary=True )
+        self.word2vec_model = models.KeyedVectors.load_word2vec_format(config['word2vec_model'], binary=True )
 
     # Ensure clean up proceeds correctly
     def cleanup(self):
@@ -191,7 +191,7 @@ def user_interrupt_handler(signal, frame):
 
 def get_parser():
     """
-    Returns a command line parser
+    Returns a command line parsercurl -X POST --data "word1=king&word2=queen" http://localhost:8888/word2vecdiff
     """
     parser = OptionParser()
     parser.add_option("-m", "--vector_file", dest="vector_file", help="Path to pre-trained word2vec vector file", type="string")
